@@ -81,16 +81,10 @@ A possible valid timetable is:
 ## 4. Python Implementation
 
 subjects = ["Python", "DBMS", "Networks"]
-
 teachers = ["T1", "T2", "T1"]
-
 rooms = ["R1", "R2"]
-
 slots = ["9AM", "10AM", "11AM"]
-
 schedule = []
-
-
 def assign(subjects, rooms, slots):
 
     if not subjects:
