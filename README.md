@@ -1,12 +1,17 @@
-**QUESTION**
-University Timetable
-A university needs to assign subjects to classrooms and time slots while avoiding conflicts between subjects and teachers.
-Question: How can backtracking be applied to find a valid timetable? 
-
-
-**SOLUTION**
 
 # University Timetable Using Backtracking
+
+## QUESTION
+
+**University Timetable**
+
+A university needs to assign subjects to classrooms and time slots while avoiding conflicts between subjects and teachers.
+
+**Question:** How can backtracking be applied to find a valid timetable?
+
+---
+
+# SOLUTION
 
 ## 1. Description
 
@@ -22,6 +27,8 @@ For a university timetable:
 The main idea is:
 
 **Choose → Check → Assign → Continue → If wrong, go back → Try again**
+
+---
 
 ## 2. Example
 
@@ -47,7 +54,7 @@ Suppose a university has:
 A possible valid timetable is:
 
 | Subject  | Time | Room | Teacher |
-| -------- | ---- | ---- | ------- |
+|----------|------|------|---------|
 | Python   | 9AM  | R1   | T1      |
 | DBMS     | 9AM  | R2   | T2      |
 | Networks | 10AM | R1   | T1      |
@@ -62,6 +69,8 @@ A possible valid timetable is:
 6. Networks tries available rooms and slots.
 7. It gets **10AM, R1** because teacher T1 is free at 10AM.
 8. All subjects are assigned successfully.
+
+---
 
 ## 3. Algorithm
 
@@ -78,10 +87,13 @@ A possible valid timetable is:
 11. Continue until all subjects are assigned.
 12. If all subjects are assigned, the timetable is valid.
 
+---
+
 ## 4. Python Implementation
 
-## Code
+### Code
 
+```python
 subjects = ["Python", "DBMS", "Networks"]
 
 teachers = ["T1", "T2", "T1"]
@@ -91,6 +103,7 @@ rooms = ["R1", "R2"]
 slots = ["9AM", "10AM", "11AM"]
 
 schedule = []
+
 
 def assign(subjects, rooms, slots):
 
@@ -149,9 +162,11 @@ if assign(subjects, rooms, slots):
 else:
 
     print("No solution")
+````
 
-    
-## 4. Time Complexity
+---
+
+## 5. Time Complexity
 
 Let:
 
@@ -161,7 +176,7 @@ Let:
 
 For every subject, we can try:
 
-T × R
+**T × R**
 
 possible combinations.
 
@@ -169,7 +184,13 @@ So the worst-case time complexity is:
 
 **O(N × (T × R)^N)**
 
-because we store the timetable and recursion information for the subjects
+### Space Complexity
+
+**O(N)**
+
+because we store the timetable and recursion information for the subjects.
+
+---
 
 ## Quick Exam Point
 
@@ -177,6 +198,9 @@ because we store the timetable and recursion information for the subjects
 
 **Backtracking means trying a choice, and if it does not work, going back and trying another choice.**
 
-### Remember:
+### Remember
 
 **Choose → Check → Assign → Continue → Backtrack → Try Again**
+
+```
+```
