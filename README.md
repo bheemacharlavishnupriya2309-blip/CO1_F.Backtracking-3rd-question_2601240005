@@ -78,104 +78,79 @@ A possible valid timetable is:
 11. Continue until all subjects are assigned.
 12. If all subjects are assigned, the timetable is valid.
 
-**Python Implementation**
+## 4. Python Implementation
 
-# List of subjects 
-subjects = ["Python", "DBMS", "Networks"] 
- 
-# Teacher for each subject 
-teachers = ["T1", "T2", "T1"] 
- 
-# List of classrooms 
-rooms = ["R1", "R2"] 
- 
-# List of time slots 
-slots = ["9AM", "10AM", "11AM"] 
- 
-# Empty timetable 
-schedule = [] 
- 
-# Function to assign subjects 
-def assign(subjects, rooms, slots): 
- 
-    # If all subjects are assigned 
-    if not subjects: 
-        return True 
- 
-    # Select the first subject 
-    subject = subjects[0] 
- 
-    # Get the teacher of the subject 
-    teacher = teachers[len(schedule)] 
- 
-    # Start checking time slots 
-    s = 0 
- 
-    while s < len(slots): 
- 
-        # Start checking rooms 
-        r = 0 
- 
-        while r < len(rooms): 
- 
-            # Select current slot and room 
-            slot = slots[s] 
-            room = rooms[r] 
- 
-            # Assume there is no conflict 
-            ok = True 
- 
-            # Check previous assignments 
-            i = 0 
- 
-            while i < len(schedule): 
- 
-                # Check room conflict 
-                if schedule[i][1] == slot and schedule[i][2] == room: 
-                    ok = False 
- 
-                # Check teacher conflict 
-                if schedule[i][1] == slot and schedule[i][3] == teacher: 
-                    ok = False 
- 
-                i += 1 
- 
-            # If there is no conflict 
-            if ok: 
- 
-                # Add subject to timetable 
-                schedule.append([subject, slot, room, teacher]) 
- 
-                # Assign the next subject 
-                if assign(subjects[1:], rooms, slots): 
-                    return True 
- 
-                # Backtrack 
-                schedule.pop() 
- 
-            # Try next room 
-            r += 1 
- 
-        # Try next time slot 
-        s += 1 
- 
-    # No valid assignment 
-    return False 
- 
- 
-# Start the assignment 
-if assign(subjects, rooms, slots): 
- 
-    # Print the timetable 
-    print(schedule) 
- 
-else: 
- 
-    # Print if no timetable is possible 
+subjects = ["Python", "DBMS", "Networks"]
+
+teachers = ["T1", "T2", "T1"]
+
+rooms = ["R1", "R2"]
+
+slots = ["9AM", "10AM", "11AM"]
+
+schedule = []
+
+
+def assign(subjects, rooms, slots):
+
+    if not subjects:
+        return True
+
+    subject = subjects[0]
+
+    teacher = teachers[len(schedule)]
+
+    s = 0
+
+    while s < len(slots):
+
+        r = 0
+
+        while r < len(rooms):
+
+            slot = slots[s]
+            room = rooms[r]
+
+            ok = True
+
+            i = 0
+
+            while i < len(schedule):
+
+                if schedule[i][1] == slot and schedule[i][2] == room:
+                    ok = False
+
+                if schedule[i][1] == slot and schedule[i][3] == teacher:
+                    ok = False
+
+                i += 1
+
+            if ok:
+
+                schedule.append([subject, slot, room, teacher])
+
+                if assign(subjects[1:], rooms, slots):
+                    return True
+
+                schedule.pop()
+
+            r += 1
+
+        s += 1
+
+    return False
+
+
+if assign(subjects, rooms, slots):
+
+    print(schedule)
+
+else:
+
     print("No solution")
-```
-**
-## 5. Time Complexity**
+
+    
+## 4. Time Complexity
 
 Let:
 
